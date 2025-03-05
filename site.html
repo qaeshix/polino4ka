@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Я тебя люблю</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffefd5;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .message {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff4500;
+            margin-bottom: 10px;
+        }
+        .photo-frame {
+            border: 5px solid #ff4500;
+            padding: 5px;
+            border-radius: 10px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+        }
+        .photo-frame img {
+            width: 100%;
+            border-radius: 5px;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .random-message {
+            font-size: 18px;
+            font-style: italic;
+            color: #333;
+            margin-top: 15px;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <p class="message">Помни, что ты важна для меня. ❤️</p>
+        <p>Я хоть и дурак, и из-за моего характера мы ссоримся, но я тебя люблю. Прости меня, пожалуйста!</p>
+
+        <div class="photo-frame">
+            <img id="photo" src="https://imgur.com/a/8E7qyzI.jpg" alt="Фото">
+        </div>
+
+        <p class="random-message" id="randomMessage"></p>
+    </div>
+
+    <script>
+        const images = [
+            "https://i.imgur.com/kyt3nQz.jpeg",
+            "https://i.imgur.com/JvHIbjG.jpeg",
+            "https://i.imgur.com/cYgjXmk.jpeg"
+        ];
+
+        const messages = [
+            "Ты делаешь этот мир лучше просто тем, что в нём есть 💖",
+            "Твоя улыбка — самое дорогое, что есть на свете 😊",
+            "Ты — моё счастье, моя любовь ❤️",
+            "Каждый день с тобой — это подарок 🎁",
+            "Ты — самое тёплое, что есть в моём сердце 🔥"
+        ];
+
+        let index = 0;
+
+        function changePhoto() {
+            index = (index + 1) % images.length;
+            document.getElementById("photo").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("photo").src = images[index];
+                document.getElementById("photo").style.opacity = "1";
+            }, 500);
+        }
+
+        function showRandomMessage() {
+            const messageElement = document.getElementById("randomMessage");
+            let randomIndex = Math.floor(Math.random() * messages.length);
+            messageElement.style.opacity = "0";
+            setTimeout(() => {
+                messageElement.textContent = messages[randomIndex];
+                messageElement.style.opacity = "1";
+            }, 500);
+        }
+
+        setInterval(changePhoto, 3000);
+        setInterval(showRandomMessage, 3000);
+        showRandomMessage();
+    </script>
+</body>
+</html>
